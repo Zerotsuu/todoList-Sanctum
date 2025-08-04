@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Todos;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTodoRequest extends FormRequest
+class StoreTodoGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,9 +22,7 @@ class StoreTodoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:1000',
-            'status' => 'required|boolean',
+            //
         ];
     }
 }

@@ -20,6 +20,16 @@ return new class extends Migration
             // Add any additional fields as necessary
             $table->timestamps();
         });
+        
+        Schema::create('todos_groups', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('todo_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->decimal('completion')->default(0);
+            $table->timestamps();
+        });
     }
 
     /**
