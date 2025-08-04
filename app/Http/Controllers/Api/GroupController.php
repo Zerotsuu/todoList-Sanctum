@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Todo;
+use App\Models\TodoGroup;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Todos\StoreTodoRequest;
-use App\Http\Requests\Todos\UpdateTodoRequest;
+use App\Http\Requests\Todos\StoreTodoGroupRequest;
+use App\Http\Requests\Todos\UpdateTodoGroupRequest;
 use Log;
 
-class TodoController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $todos = Todo::all();
+        $todos = TodoGroup::all();
         Log::info('Fetching all todos');
         return response()->json($todos);
     }
@@ -31,7 +31,7 @@ class TodoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTodoRequest $request)
+    public function store(StoreTodoGroupRequest $request)
     {
         //
     }
@@ -39,16 +39,16 @@ class TodoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Todo $todo)
+    public function show(TodoGroup $todoGroup)
     {
-        Log::info('Fetching todo with ID: ' . $todo->id);
-        return response()->json($todo);
+        Log::info('Fetching todo with ID: ' . $todoGroup->id);
+        return response()->json($todoGroup);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Todo $todo)
+    public function edit(TodoGroup $todoGroup)
     {
         
     }
@@ -56,20 +56,20 @@ class TodoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTodoRequest $request, Todo $todo)
+    public function update(UpdateTodoGroupRequest $request, TodoGroup $todoGroup)
     {
-        $todo->update($request->validated());
-        Log::info('Updated todo with ID: ' . $todo->id);
-        return response()->json($todo);
+        $todoGroup->update($request->validated());
+        Log::info('Updated todo with ID: ' . $todoGroup->id);
+        return response()->json($todoGroup);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Todo $todo)
+    public function destroy(TodoGroup $todoGroup)
     {
-        $todo->delete();
-        Log::info('Deleted todo with ID: ' . $todo->id);
+        $todoGroup->delete();
+        Log::info('Deleted todo with ID: ' . $todoGroup->id);
         return response()->json(['message' => 'Todo deleted successfully']);
     }
 }
