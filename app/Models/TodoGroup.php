@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Todo extends Model
+class TodoGroup extends Model
 {
     /** @use HasFactory<\Database\Factories\TodoFactory> */
     use HasFactory;
@@ -41,9 +41,9 @@ class Todo extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function group()
+    public function todos()
     {
-        // Return the group that this todo belongs to
-        return $this->belongsTo(TodoGroup::class);
+        // Return the todos that belong to this group
+        return $this->hasMany(Todo::class);
     }
 }
