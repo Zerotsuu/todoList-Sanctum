@@ -19,7 +19,7 @@ onMounted(async () => {
         title.value = todoGroup.title;
         description.value = todoGroup.description;
     } catch (err: any) {
-        error.value = err.response?.data?.message || 'Failed to fetch todo';
+        error.value = err.response?.data?.message || 'Failed to fetch todo group';
     }
 });
 
