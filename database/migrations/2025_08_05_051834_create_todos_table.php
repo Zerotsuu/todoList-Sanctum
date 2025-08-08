@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('todo_group_id')->nullable()->constrained('todo_groups')->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
             $table->boolean('status')->default(false);
@@ -21,13 +22,12 @@ return new class extends Migration
             $table->timestamps();
         });
         
-        Schema::create('todos_groups', function (Blueprint $table) {
+        Schema::create('todo_groups', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('todo_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->decimal('completion')->default(0);
+            $table->decimal('completion')->default(0)->nullable();
             $table->timestamps();
         });
     }
@@ -38,5 +38,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('todos');
+        Schema::dropIfExists('todos_groups');
     }
 };

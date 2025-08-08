@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Todos;
+namespace App\Http\Requests\TodoGroups;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class UpdateTodoGroupRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateTodoGroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000',
         ];
     }
 }

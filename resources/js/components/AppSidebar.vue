@@ -22,7 +22,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Group List',
-        href: '/groups',
+        href: '/todo-groups',
         icon: LayoutGrid,
     },
 ];

@@ -8,25 +8,15 @@ use App\Http\Requests\Todos\StoreTodoRequest;
 use App\Http\Requests\Todos\UpdateTodoRequest;
 use Inertia\Inertia;
 use Log;
-use App\Services\TodoService;
 
 class TodoController extends Controller
 {
-    protected $service;
-
-    public function __construct(TodoService $service)
-    {
-        $this->service = $service;
-    }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $todos = $this->service->getAllTodos();
-        Log::info('Fetching all todos');
-        return response()->json($todos);
+        return Inertia::render('todo/Index');
     }
 
     /**
@@ -42,19 +32,16 @@ class TodoController extends Controller
      */
     public function store(StoreTodoRequest $request)
     {
-        $todo = $this->service->createTodo($request->validated());
-        Log::info('Created new todo with ID: ' . $todo->id);
-        return response()->json($todo);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Todo $todo)
     {
-        $todo = $this->service->getTodo($id);
-        Log::info('Fetching todo with ID: ' . $todo->id);
-        return response()->json($todo);
+        
+        return Inertia::render('todo/Show', ['id' => (string) $todo->id]);
     }
 
     /**
@@ -71,9 +58,9 @@ class TodoController extends Controller
      */
     public function update(UpdateTodoRequest $request, Todo $todo)
     {
-        $updated = $this->service->updateTodo($todo, $request->validated());
+        $todo->update($request->validated());
         Log::info('Updated todo with ID: ' . $todo->id);
-        return response()->json($updated);
+        return response()->json($todo);
     }
 
     /**
@@ -81,7 +68,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        $this->service->deleteTodo($todo);
+        $todo->delete();
         Log::info('Deleted todo with ID: ' . $todo->id);
         return response()->json(['message' => 'Todo deleted successfully']);
     }

@@ -63,4 +63,14 @@ class TodoRepository implements TodoRepositoryInterface
     {
         return $todo->delete();
     }
+    /**
+     * Get todos by group ID.
+     *
+     * @param int $groupId
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getByGroupId($groupId)
+    {
+        return Todo::where('todo_group_id', $groupId)->get();
+    }
 }

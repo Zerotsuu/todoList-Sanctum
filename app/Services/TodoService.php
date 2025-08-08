@@ -28,16 +28,22 @@ class TodoService
 
     public function createTodo(array $data)
     {
+        $data['user_id'] = auth()->id();
         return $this->repository->create($data);
     }
 
     public function updateTodo(Todo $todo, array $data)
     {
+        $data['user_id'] = auth()->id();
         return $this->repository->update($todo, $data);
     }
 
     public function deleteTodo(Todo $todo)
     {
         return $this->repository->delete($todo);
+    }
+    public function getTodosByGroup($groupId)
+    {
+        return $this->repository->getByGroupId($groupId);
     }
 }

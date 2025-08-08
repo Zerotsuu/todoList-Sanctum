@@ -18,7 +18,7 @@ class TodoGroup extends Model
     protected $fillable = [
         'title',
         'description',
-        'status',
+        'user_id',
     ];
 
     /**
@@ -31,7 +31,7 @@ class TodoGroup extends Model
         return [
             'title' => 'string',
             'description' => 'string',
-            'status' => 'boolean',
+            
         ];
     }
 

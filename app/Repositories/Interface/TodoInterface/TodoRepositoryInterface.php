@@ -10,4 +10,5 @@ interface TodoRepositoryInterface
     public function create(array $data);
     public function update(Todo $todo, array $data);
     public function delete(Todo $todo);
+    public function getByGroupId($groupId);
 }
