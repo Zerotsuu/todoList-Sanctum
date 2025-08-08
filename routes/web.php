@@ -16,7 +16,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->except(['destroy', 'update', 'store'])
         ->names('page.todo');
 
-    Route::resource('todo-groups', GroupController::class)
+    Route::resource('todo-groups', TodoGroupController::class)
         ->except(['destroy', 'update', 'store'])
         ->names('page.group');
 });
