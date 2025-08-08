@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Page\TodoController;
-use App\Http\Controllers\Page\GroupController;
+use App\Http\Controllers\Page\TodoGroupController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

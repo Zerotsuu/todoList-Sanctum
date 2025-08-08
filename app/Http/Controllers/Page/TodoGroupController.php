@@ -9,7 +9,7 @@ use App\Http\Requests\TodoGroups\UpdatetodoGroupRequest;
 use Inertia\Inertia;
 use Log;
 
-class GroupController extends Controller
+class TodoGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
