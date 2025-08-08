@@ -32,7 +32,7 @@ async function updateTodoGroup() {
         });
         emit('updated');
     } catch (err: any) {
-        error.value = err.response?.data?.message || 'Failed to update todo';
+        error.value = err.response?.data?.message || 'Failed to update todo group';
     }
 }
 </script>
