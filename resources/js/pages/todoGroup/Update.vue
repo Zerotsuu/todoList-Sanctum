@@ -38,7 +38,7 @@ async function updateTodoGroup() {
 </script>
 
 <template>
-    <Head title="Update Todo" />
+    <Head title="Update Todo Group" />
     <form @submit.prevent="updateTodoGroup" class="max-w-xl p-4 border rounded-xl flex flex-col gap-4">
         <div>
             <label class="font-semibold">Title</label>
