@@ -11,19 +11,19 @@ import { apiPost } from '@/api/auth';
 //     { title: 'Create Todo', href: '/todos/create' },
 // ];
 
-const emit = defineEmits(['created', 'close']);
+const emit = defineEmits(['created']);
 const title = ref('');
 const description = ref('');
-const status = ref(false);
+// const status = ref(false);
 const error = ref('');
 
-async function createTodo() {
+async function createTodoGroup() {
     try {
-        await apiPost('/api/todos', {
+        await apiPost('/api/todo-groups', {
             title: title.value,
             description: description.value,
-            status: status.value,
         });
+        console.log("created todo-group");
         emit('created');
     } catch (err: any) {
         error.value = err.response?.data?.message || 'Failed to create todo';
@@ -32,9 +32,9 @@ async function createTodo() {
 </script>
 
 <template>
-    <Head title="Create Todo" />
+    <Head title="Create Todo Group" />
     <!-- <AppLayout :breadcrumbs="breadcrumbs"> -->
-        <form @submit.prevent="createTodo" class="max-w-md mx-auto p-4 border rounded-xl flex flex-col gap-4">
+        <form @submit.prevent="createTodoGroup" class="max-w-md mx-auto p-4 border rounded-xl flex flex-col gap-4">
             <div>
                 <label class="block font-semibold">Title</label>
                 <input v-model="title" type="text" class="w-full border rounded p-2" required />
@@ -43,14 +43,7 @@ async function createTodo() {
                 <label class="block font-semibold">Description</label>
                 <textarea v-model="description" class="w-full border rounded p-2" required></textarea>
             </div>
-            <div>
-                <label class="block font-semibold">Status</label>
-                <select v-model="status" class="w-full border rounded p-2">
-                    <option :value="false">Pending</option>
-                    <option :value="true">Completed</option>
-                </select>
-            </div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Todo</button>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Group</button>
             <div v-if="error" class="text-red-500">{{ error }}</div>
         </form>
     <!-- </AppLayout> -->

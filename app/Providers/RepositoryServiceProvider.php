@@ -13,7 +13,12 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(
         \App\Repositories\Interface\TodoInterface\TodoRepositoryInterface::class,
-        \App\Repositories\Eloquent\TodoRepository\TodoRepository::class
+        \App\Repositories\Eloquent\TodoRepository\TodoRepository::class,
+        );
+        
+        $this->app->bind(
+        \App\Repositories\Interface\TodoGroupInterface\TodoGroupRepositoryInterface::class,
+        \App\Repositories\Eloquent\TodoGroupRepository\TodoGroupRepository::class,
         );
     }
 

@@ -19,6 +19,7 @@ class Todo extends Model
         'title',
         'description',
         'status',
+        'user_id', // Assuming you want to track the user who created the todo
     ];
 
     /**

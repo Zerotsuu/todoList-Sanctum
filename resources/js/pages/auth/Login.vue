@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
+import { getCsrfCookie } from '@/api/auth';
 
 defineProps<{
     status?: string;
@@ -20,7 +21,8 @@ const form = useForm({
     remember: false,
 });
 
-const submit = () => {
+const submit = async () => {
+    await getCsrfCookie();
     form.post(route('login'), {
         onFinish: () => form.reset('password'),
     });

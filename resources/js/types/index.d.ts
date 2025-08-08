@@ -42,4 +42,10 @@ export interface Todo{
     status:boolean;
 }
 
+export interface TodoGroup{
+    id:number;
+    title:string;
+    description:string;
+}
+
 export type BreadcrumbItemType = BreadcrumbItem;
