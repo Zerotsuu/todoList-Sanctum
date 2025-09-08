@@ -6,7 +6,6 @@ import { ref, onMounted } from 'vue';
 import { apiGet } from '@/api/auth';
 import Button from '@/components/ui/button/Button.vue';
 import { useTodoGroups } from '@/composables/useTodoGroups';
-// import { useTodos } from '@/composables/useTodos';
 
 const todoGroup = ref<TodoGroup | null>(null);
 
@@ -15,15 +14,11 @@ const props = defineProps({
         type: String,
         required: true,
     },
-    // todos: {
-    //     type: Array as () => Todo[],
-    //     required: true,
-    // },
 });
 
 const emit = defineEmits(['close', 'delete', 'edit', 'open-todo']);
 
-const { handleShowDelete, handleShowEdit, fetchTodosByGroup, groupOfTodos } = useTodoGroups();
+const { handleShowDelete, handleShowEdit, groupOfTodos } = useTodoGroups();
 
 const handleDelete = () => {
     // (id: string, onDelete: (id: string) => void, onClose: () => void) => void
@@ -39,10 +34,10 @@ const handleEdit = () => {
 
 onMounted(async () => {
     try {
-        const response = await apiGet(`/api/todo-groups/${props.id}`);
+        const response = await apiGet<TodoGroup>(`/api/todo-groups/${props.id}`);
         todoGroup.value = response.data;
+        groupOfTodos.value = response.data.todos || [];
 
-        await fetchTodosByGroup(Number(props.id));
     } catch (error) {
         console.error('Error fetching todo:', error);
     }

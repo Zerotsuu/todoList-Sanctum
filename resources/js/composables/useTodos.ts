@@ -9,7 +9,7 @@ export function useTodos() {
 
     async function fetchTodos() {
         try {
-            const response = await apiGet('/api/todos');
+            const response = await apiGet<Todo[]>('/api/todos');
             todos.value = response.data;
         } catch (error) {
             console.error('Error fetching todos:', error);

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Todos\StoreTodoRequest;
 use App\Http\Requests\Todos\UpdateTodoRequest;
 use Inertia\Inertia;
-use Log;
+use Illuminate\Support\Facades\Log;
 use App\Services\TodoService;
 
 class TodoController extends Controller

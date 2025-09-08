@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\TodoGroupResource;
 use App\Models\TodoGroup;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TodoGroups\StoreTodoGroupRequest;
 use App\Http\Requests\TodoGroups\UpdateTodoGroupRequest;
 use Inertia\Inertia;
-use Log;
+use Illuminate\Support\Facades\Log;
 use App\Services\TodoGroupService;
 
 class TodoGroupController extends Controller
@@ -45,7 +46,7 @@ class TodoGroupController extends Controller
         $this->authorize('create', TodoGroup::class);
         $todoGroup = $this->service->createTodoGroup($request->validated());
         Log::info('Created new group with ID: '. $todoGroup->id);
-        return response()->json($todoGroup);
+        return new TodoGroupResource($todoGroup);
     }
 
     /**
@@ -53,8 +54,8 @@ class TodoGroupController extends Controller
      */
     public function show($id)
     {
-        $todoGroup = $this->service->getTodoGroup($id);
-        $this->authorize('view', $todoGroup);
+        $todoGroup = $this->service->getGroupWithTodos($id);
+        // $this->authorize('view', $todoGroup);
         Log::info('Fetching Todo Group with ID: ' . $todoGroup->id);
         return response()->json($todoGroup);
     }

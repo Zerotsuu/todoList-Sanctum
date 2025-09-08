@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Todos\StoreTodoRequest;
 use App\Http\Requests\Todos\UpdateTodoRequest;
 use Inertia\Inertia;
-use Log;
+use Illuminate\Support\Facades\Log;
 
 class TodoController extends Controller
 {
@@ -16,7 +16,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return Inertia::render('todo/Index');
+        return Inertia::render('todo/TodoIndex');
     }
 
     /**
@@ -59,7 +59,7 @@ class TodoController extends Controller
     public function update(UpdateTodoRequest $request, Todo $todo)
     {
         $todo->update($request->validated());
-        Log::info('Updated todo with ID: ' . $todo->id);
+        // Log::info('Updated todo with ID: ' . $todo->id);
         return response()->json($todo);
     }
 
@@ -69,7 +69,7 @@ class TodoController extends Controller
     public function destroy(Todo $todo)
     {
         $todo->delete();
-        Log::info('Deleted todo with ID: ' . $todo->id);
+        // Log::info('Deleted todo with ID: ' . $todo->id);
         return response()->json(['message' => 'Todo deleted successfully']);
     }
 }

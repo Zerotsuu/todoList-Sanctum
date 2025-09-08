@@ -42,4 +42,8 @@ class TodoGroupService
     {
         return $this->repository->delete($todoGroup);
     }
+    public function getGroupWithTodos(int $groupId)
+    {
+        return $this->repository->findWithTodos($groupId);
+    }
 }

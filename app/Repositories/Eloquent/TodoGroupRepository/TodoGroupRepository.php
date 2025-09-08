@@ -15,7 +15,7 @@ class TodoGroupRepository implements TodoGroupRepositoryInterface
      */
     public function all()
     {
-        return TodoGroup::all();
+        return TodoGroup::select('id', 'title', 'description')->get();
     }
 
     /**
@@ -62,5 +62,12 @@ class TodoGroupRepository implements TodoGroupRepositoryInterface
     public function delete(TodoGroup $todo)
     {
         return $todo->delete();
+    }
+
+    public function findWithTodos($groupId)
+    {
+        return TodoGroup::select('id', 'title', 'description')
+                ->with(['todos:id,todo_group_id,title,status'])
+                ->find($groupId);
     }
 }

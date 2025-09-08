@@ -6,11 +6,11 @@ export function useTodoGroups() {
     const todoGroups = ref<TodoGroup[]>([]);
     const activeModal = ref<'show' | 'create' | 'update' | 'todo' | null>(null);
     const selectedId = ref<number | null>(null);
-    const groupOfTodos = ref<any[]>([])
+    const groupOfTodos = ref<TodoGroup[]>([])
 
     async function fetchTodoGroups() {
         try {
-            const response = await apiGet('/api/todo-groups');
+            const response = await apiGet<TodoGroup[]>('/api/todo-groups');
             todoGroups.value = response.data;
         } catch (error) {
             console.error('Error fetching todos:', error);
@@ -20,7 +20,7 @@ export function useTodoGroups() {
 
     async function fetchTodosByGroup(groupId: number) {
         try {
-            const response = await apiGet(`/api/todos/group/${groupId}`);
+            const response = await apiGet<TodoGroup[]>(`/api/todos/group/${groupId}`);
             groupOfTodos.value = response.data;
         } catch (error) {
             console.error('Error fetching todos:', error);

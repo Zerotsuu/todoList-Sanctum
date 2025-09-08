@@ -46,6 +46,8 @@ export interface TodoGroup{
     id:number;
     title:string;
     description:string;
+    status:boolean;
+    todos:Array;
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;

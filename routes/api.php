@@ -15,6 +15,8 @@ Route::get('todos/group/{groupId}', [TodoController::class, 'getByGroup'])->name
 
 Route::apiResource('todos', TodoController::class)->names('api.todos');
 
-Route::apiResource('todo-groups', TodoGroupController::class)->names('api.todo-groups');
+// Route::apiResource('todo-groups', TodoGroupController::class)->names('api.todo-groups');
 });
+
+Route::apiResource('todo-groups', TodoGroupController::class)->names('api.todo-groups');
 

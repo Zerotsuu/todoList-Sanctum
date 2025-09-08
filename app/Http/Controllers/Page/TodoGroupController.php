@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TodoGroups\StoretodoGroupRequest;
 use App\Http\Requests\TodoGroups\UpdatetodoGroupRequest;
 use Inertia\Inertia;
-use Log;
+use Illuminate\Support\Facades\Log;
 
 class TodoGroupController extends Controller
 {
@@ -59,7 +59,7 @@ class TodoGroupController extends Controller
     public function update(UpdateTodoGroupRequest $request, todoGroup $todoGroup)
     {
         $todoGroup->update($request->validated());
-        Log::info('Updated todo with ID: ' . $todoGroup->id);
+        // Log::info('Updated todo with ID: ' . $todoGroup->id);
         return response()->json($todoGroup);
     }
 
@@ -69,7 +69,7 @@ class TodoGroupController extends Controller
     public function destroy(TodoGroup $todoGroup)
     {
         $todoGroup->delete();
-        Log::info('Deleted todo with ID: ' . $todoGroup->id);
+        // Log::info('Deleted todo with ID: ' . $todoGroup->id);
         return response()->json(['message' => 'Todo deleted successfully']);
     }
 }
